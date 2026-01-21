@@ -9,6 +9,7 @@ Python scripts `0_visualize_attn.py`–`4_visualize_scores.py` implement the ful
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 pip install transformers accelerate bitsandbytes sentencepiece pandas numpy matplotlib seaborn tqdm pyyaml openai
 ```
+- Set your OpenAI key for evaluations: `export OPENAI_API_KEY="<your-key-here>"`.
 - Set Hugging Face auth if the chosen model requires it (`huggingface-cli login`).
 - Required data already lives under `data/`, outputs are written beside it (e.g., `data/attention_to_prompt`, `data/cached_outputs`, `data/csvs`).
 

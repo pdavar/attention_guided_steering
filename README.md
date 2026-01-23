@@ -4,10 +4,12 @@ Python scripts `0_visualize_attn.py`–`4_visualize_scores.py` implement the ful
 
 ### 1) Environment
 - Python ≥3.10 and an NVIDIA GPU with CUDA (models load in 4-bit when available).
-- Install deps (use a venv):
 ```
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-pip install transformers accelerate bitsandbytes sentencepiece pandas numpy matplotlib seaborn tqdm pyyaml openai
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip setuptools wheel
+
+pip install -r requirements.txt
 ```
 - Set your OpenAI key for evaluations: `export OPENAI_API_KEY="<your-key-here>"`.
 - Set Hugging Face auth if the chosen model requires it (`huggingface-cli login`).

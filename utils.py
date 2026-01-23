@@ -20,8 +20,10 @@ from tqdm import tqdm
 from pathlib import Path
 
 
-CACHE_DIR = "/home/parmida/orcd/pool/"    #where the models will be downloaded
-DATA_DIR = "./data/"   #where the steering_vectors/outputs will be created
+CACHE_DIR = os.environ.get("CACHE_DIR")    #where the models will be downloaded
+DATA_DIR = os.path.join(os.getcwd(), "data")    #where the steering_vectors/outputs will be created
+
+
 
 SEED = 0
 random.seed(SEED)
@@ -34,13 +36,14 @@ dataset_to_lower = {'fears':True,
 
 
 def get_csv_filename(method, concept_class, rep_token, model_type, version, use_soft_labels):
+    root_dir = ensure_dir(os.path.join(DATA_DIR, "csvs"))
     if use_soft_labels:
-        filepath = f"csvs/{method}_{concept_class}_tokenidx{rep_token}_block_softlabels_gpt4o_outputs_500_concepts_{model_type}_{version}.csv"
+        filepath = f"{method}_{concept_class}_tokenidx{rep_token}_block_softlabels_gpt4o_outputs_500_concepts_{model_type}_{version}.csv"
 
     else:
-        filepath =  f"csvs/{method}_{concept_class}_tokenidx{rep_token}_block_gpt4o_outputs_500_concepts_{model_type}_{version}.csv"
+        filepath =  f"{method}_{concept_class}_tokenidx{rep_token}_block_gpt4o_outputs_500_concepts_{model_type}_{version}.csv"
     
-    return os.path.join(DATA_DIR, filepath)
+    return os.path.join(root_dir, filepath)
         
 def get_steered_output_filename(method, concept_class, rep_token, model_type, version, use_soft_labels):
     if use_soft_labels:
@@ -51,7 +54,9 @@ def get_steered_output_filename(method, concept_class, rep_token, model_type, ve
     return os.path.join(DATA_DIR, file_path)
     
 def get_concept_vec_filename(method, concept, rep_token, model_type, use_soft_labels, datasize):
-    root_dir = '/home/parmida/orcd/pool/directions/'
+    # DATA_DIR = os.path.join(os.getcwd(), "data") 
+    root_dir = os.path.join(DATA_DIR, 'directions')
+    root_dir = ensure_dir(root_dir)
     if datasize == 'single':
         if use_soft_labels:
             vec_path = f'{method}_{concept}_tokenidx_{rep_token}_block_softlabels_{model_type}.pkl'
@@ -101,6 +106,7 @@ def ensure_dir(path):
     Returns the directory as a Path.
     """
     p = Path(path)
+    print("path is: ", p)
     p.mkdir(parents=True, exist_ok=True)
     return p
 
@@ -226,16 +232,19 @@ def compute_save_directions(llm, dataset, use_soft_labels, concept, rep_token,  
     if not isinstance(rep_token, int):
         assert layer_to_token is not None
     vec_filename = get_concept_vec_filename(control_method, concept, rep_token, llm.model_name, use_soft_labels, datasize)
-    # try:
-    #     with open(vec_filename, "rb") as f:
-    #         pickle.load(f)
-    # except (FileNotFoundError, pickle.UnpicklingError, EOFError):
-    print("Direction missing or corrupted. Saving direction...")
-    controller.compute_directions(dataset['inputs'], dataset['labels'], use_soft_labels,
-                                  rep_token, hidden_state, layer_to_token, concat_layers, head_agg)
+    try:
+        with open(vec_filename, "rb") as f:
+            pickle.load(f)
+            print("File already exists")
+    except (FileNotFoundError, pickle.UnpicklingError, EOFError):
+        print("Direction missing or corrupted. Saving direction...")
+        controller.compute_directions(dataset['inputs'], dataset['labels'], use_soft_labels,
+                                      rep_token, hidden_state, layer_to_token, concat_layers, head_agg)
 
 
-    controller.save(vec_filename)
+        controller.save(vec_filename)
+        print("Saved steering vector: ", vec_filename)
+    return
 
 
 

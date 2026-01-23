@@ -58,7 +58,7 @@ def save_attn_paired(llm, concept = 'aggressive', concept_class = 'moods', head_
         attns[:, layer,:] = layer_to_attns[layer]
             
     np.save(attn_outpath, attns)
-    print("Done!")
+    print(f"Saved attentions at {ROOT_DIR}")
     return
 
 
@@ -68,7 +68,13 @@ def save_attn_paired(llm, concept = 'aggressive', concept_class = 'moods', head_
 
 if __name__=="__main__":
     
-    rep_token, model_type, dataset_label, method, version, label = get_args()
+    rep_token, model_type, dataset_label, method, _, label = get_args()
+    print(f"rep_token = {rep_token}")
+    print(f"model_name = {model_type}")
+    print(f"concept_type = {dataset_label}")
+    print(f"control_method = {method}")
+    print(f"labels = {label}")
+    assert label in ['hard', 'soft']
     
     llm = select_llm(model_name = model_type, attn_implementation = "eager")
     concept_class = dataset_label

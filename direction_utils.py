@@ -274,7 +274,7 @@ def train_rfm_probe_on_concept(train_X, train_y,
     for bw in bws:
         for norm in [True, False]:
         
-            u,r, M = adit_rfm.rfm((train_X, train_y), (val_X, val_y), L=bw, 
+            u,r, M = rfm.rfm((train_X, train_y), (val_X, val_y), L=bw, 
                                     reg=reg, num_iters=10, norm=norm)
             # print("stats: ", bw, norm, r)
             if r >= best_r: 

@@ -40,13 +40,13 @@ else:
 COEFS = get_coefs(model_type, use_soft_labels)
 
 
-
 dataset_to_lower = {'fears':True, 
                     'personalities':True, 
                     'moods':True, 
                     'places':False, 
                     'personas':False,
-                    'jailbreaking':False}
+                    'jailbreaking': False,
+                     'custom':False}
 def main():
 
     torch.backends.cudnn.benchmark = True        

@@ -17,7 +17,8 @@ dataset_to_lower = {'fears':True,
                     'moods':True, 
                     'places':False, 
                     'personas':False,
-                    'jailbreaking': False}
+                    'jailbreaking': False,
+                     'custom':False}
  
 
          
@@ -67,7 +68,6 @@ def save_attn_paired(llm, concept = 'aggressive', concept_class = 'moods', head_
 
 
 if __name__=="__main__":
-    
     rep_token, model_type, dataset_label, method, _, label = get_args()
     print(f"rep_token = {rep_token}")
     print(f"model_name = {model_type}")
@@ -75,16 +75,14 @@ if __name__=="__main__":
     print(f"control_method = {method}")
     print(f"labels = {label}")
     assert label in ['hard', 'soft']
-    
+   
     llm = select_llm(model_name = model_type, attn_implementation = "eager")
     concept_class = dataset_label
     fname = f"data/concepts/{concept_class}.txt"
     concept_list = read_file(fname, lower=dataset_to_lower[concept_class])
-    
-        
     for concept in concept_list:
         print(f"=== Concept = {concept} ===")
-        
+
         save_attn_paired(llm, concept , concept_class = concept_class, head_agg = 'mean')
         
     

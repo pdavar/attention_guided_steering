@@ -16,6 +16,7 @@ print(f"labels = {label}")
 assert label in ['hard', 'soft']
 
 
+
 paired_samples = False
 use_soft_labels = label=='soft'
 datasize = 'single'
@@ -27,11 +28,12 @@ def main(model_name, concept_type):
     torch.backends.cuda.matmul.allow_tf32 = True    
     fname = f"data/concepts/{concept_type}.txt"
     dataset_to_lower = {'fears':True, 
-                        'personalities':True, 
-                        'moods':True, 
-                        'places':False, 
-                        'personas':False,
-                        'jailbreaking':False}
+                    'personalities':True, 
+                    'moods':True, 
+                    'places':False, 
+                    'personas':False,
+                    'jailbreaking': False,
+                     'custom':False}
                      
     llm = select_llm(model_name)
                      

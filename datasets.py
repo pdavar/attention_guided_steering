@@ -507,6 +507,91 @@ def personalities_dataset_paired(llm, personality, SEED = 0):
     print(f"Length of trainging data for {personality}: {len(formatted_data)}")
     return {'inputs':formatted_data, 'labels':labels}
 
+
+
+def custom_dataset(llm, prefix, SEED = 0, datasize = 'triple'):
+    
+    random.seed(SEED)
+    data_dir = "data/general_statements/"
+    
+    with open(os.path.join(data_dir, f"class_0.txt"), encoding="utf-8") as f:
+        neg_statements = f.readlines()
+    with open(os.path.join(data_dir, f"class_1.txt"), encoding="utf-8") as f:
+        pos_statements = f.readlines()
+    if datasize=='double' or datasize=='triple':
+        with open(os.path.join(data_dir, f"class_0_a.txt"), encoding="utf-8") as f:
+            neg_statements += f.readlines()
+        with open(os.path.join(data_dir, f"class_1_a.txt"), encoding="utf-8") as f:
+            pos_statements += f.readlines()
+    if datasize=='triple':
+        with open(os.path.join(data_dir, f"class_0_b.txt"), encoding="utf-8") as f:
+            neg_statements += f.readlines()
+        with open(os.path.join(data_dir, f"class_1_b.txt"), encoding="utf-8") as f:
+            pos_statements += f.readlines()
+    
+    pos_prompt = '{prefix}  What are your thoughts on the following statement? \nStatement: {statement}'
+    neg_prompt = 'What are your thoughts on the following statement? \nStatement: {statement}'
+    
+    
+    #switch here to match Adit's
+    pos_data = [pos_prompt.format(prefix=prefix, statement = s) for s in neg_statements]
+    neg_data = [neg_prompt.format(statement = s) for s in pos_statements]
+    
+    formatted_data = []
+    labels = []
+    # print("pos data: ", pos_data[:5])
+    assert len(pos_data)==len(neg_data)
+    print(f"Length of trainging data for {prefix}: {2*len(pos_data)}")
+    for idx in range(len(pos_data)):
+        pos_chat = [{"role": "user", "content": pos_data[idx]}]
+        formatted_data.append(llm.tokenizer.apply_chat_template(pos_chat, tokenize = False, add_generation_prompt = True))
+        labels.append(1.)
+        
+        neg_chat = [{"role": "user", "content": neg_data[idx]}]
+        formatted_data.append(llm.tokenizer.apply_chat_template(neg_chat, tokenize = False, add_generation_prompt = True))
+        labels.append(0)   
+        
+    return {'inputs':formatted_data, 'labels':labels}
+
+def custom_dataset_paired(llm, prefix, SEED = 0):
+    
+    random.seed(SEED)
+    data_dir = "data/general_statements/"
+    
+    with open(os.path.join(data_dir, f"class_0.txt"), encoding="utf-8") as f:
+        statements = f.readlines()
+    with open(os.path.join(data_dir, f"class_1.txt"), encoding="utf-8") as f:
+        statements += f.readlines()
+
+    
+    pos_prompt = '{prefix}  What are your thoughts on the following statement? \nStatement: {statement}'
+    neg_prompt = 'What are your thoughts on the following statement? \nStatement: {statement}'
+    
+    
+    #switch here to match Adit's
+    prefixed_data = [pos_prompt.format(prefix=prefix, statement = s) for s in statements]
+    nonprefixed_data = [neg_prompt.format(statement = s) for s in statements]
+    
+    formatted_data = []
+    labels = []
+    
+    
+    for idx in range(len(statements)):
+        pos_chat = [{"role": "user", "content": prefixed_data[idx]}]
+        tokenized_pos_chat = llm.tokenizer.apply_chat_template(pos_chat, tokenize = False, add_generation_prompt = True)
+        
+
+        neg_chat = [{"role": "user", "content": nonprefixed_data[idx]}]
+        tokenized_neg_chat = llm.tokenizer.apply_chat_template(neg_chat, tokenize = False, add_generation_prompt = True)
+
+        formatted_data.append((tokenized_pos_chat, tokenized_neg_chat))
+        labels.append(1) #replace with difference of attention   
+        
+    print(f"Length of trainging data for {prefix}: {len(formatted_data)}")
+    return {'inputs':formatted_data, 'labels':labels}
+
+
+
 def get_dataset_fn(concept, paired_samples = False):
     if concept == "fears":
         if paired_samples:
@@ -538,5 +623,10 @@ def get_dataset_fn(concept, paired_samples = False):
             return jailbreaking_dataset_paired
         else:
             return jailbreaking_dataset
+    elif concept == 'custom':
+        if paired_samples:
+            return custom_dataset_paired
+        else:
+            return custom_dataset
     else:
         raise ValueError(f"Unknown concept for making dataset: {concept}")

@@ -14,6 +14,7 @@ pip install -r requirements.txt
 - Set your OpenAI key for evaluations: `export OPENAI_API_KEY="<your-key-here>"`.
 - Set Hugging Face auth if the chosen model requires it (`huggingface-cli login`).
 - Required data already lives under `data/`, outputs are written beside it (e.g., `data/attention_to_prompt`, `data/cached_outputs`, `data/csvs`).
+- To steer towrads a custom concept that is not already listed under `data/concepts`, use the flag `-c custom` and insert your entire prefix in the `data/concepts/custom.txt` file.
 
 ### 2) Shared CLI flags
 `args.py` defines common flags (defaults in parentheses):
@@ -21,7 +22,7 @@ pip install -r requirements.txt
 - `--model_name/-m` (`llama_3.1_8b`): see `utils.select_llm` for allowed IDs.
 - `--concept_type/-c` (`fears`): one of `fears|personalities|moods|places|personas|jailbreaking`.
 - `--control_method/-cm` (`rfm`): steering method.
-- `--version/-v` (`1`): prompt version.
+- `--version/-v` (`1`): test prompt version.
 - `--label/-l` (`soft`): `soft` or `hard` labels.
 
 ### 3) Pipeline steps
@@ -37,7 +38,7 @@ python 0_visualize_attn.py -t max_attn_per_layer -m llama_3.1_8b -c fears -cm rf
 ```
 python 1_get_directions.py -t max_attn_per_layer -m llama_3.1_8b -c fears -cm rfm -v 1 -l soft
 ```
-  - Output: direction vectors saved under `/home/parmida/orcd/pool/directions/…`.
+  - Output: direction vectors saved under `/data/directions/`.
 
 - **2_steer.py** – generate original + steered completions for each concept and coefficient.
   - Usage:

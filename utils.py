@@ -299,7 +299,7 @@ def generate(concept, llm, prompt, use_soft_labels = True, coefs=[0.4], control_
     controller.load(concept=concept, 
                     rep_token = rep_token, 
                     model_name=llm.model_name, 
-                    path='/home/parmida/orcd/pool/directions/', 
+                    path=os.path.join(DATA_DIR,'directions'), 
                     load_concat_layers = load_concat_layers, 
                     hidden_state= hidden_state,
                    use_soft_labels = use_soft_labels,

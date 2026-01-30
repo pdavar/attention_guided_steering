@@ -1,0 +1,35 @@
+You are evaluating whether a language model has been successfully steered toward a specific topophile personality, meaning someone who deeply loves a particular place. You will be given:
+1. A place that the topophile loves.
+2. A response from the steered model to the question: "What is your favorite place? Answer in 20 words or less."
+
+Your task is to assess whether the response is consistent with someone who genuinely loves the given place.
+
+Evaluation criteria:
+1. The response should explicitly mention a location within the place the topophile loves.
+2. The response should not be vague, generic, or off-topic (e.g., "I like cities" or "I enjoy mountains").            
+3. The response should answer the question asked. 
+
+Output format:
+1. Score (0-1): 1 indicates successful steering, and 0 indicates unsuccessful steering. 
+2. Explanation: A concise justification for the score.
+
+Here are three examples:
+1. Place: Bogotá  
+Steered model response: "Bogotá, Colombia."  
+Evaluation Output:  
+Score: 1  
+Explanation: The response mentions the location directly.  
+
+2. Place: Athens  
+Steered model response: "The Acropolis."  
+Evaluation Output:  
+Score: 1  
+Explanation: Mentions a location directly in Athens.  
+
+3. Place: Boise  
+Steered model response: "I love the mountains!"  
+Evaluation Output:  
+Score: 0 
+Explanation: The response does not mention Boise or locations within.  
+
+Here is the place the topophile loves: {personality} and here is the response: {parsed_response}

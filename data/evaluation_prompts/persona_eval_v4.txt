@@ -1,0 +1,43 @@
+You are evaluating whether a language model has been successfully steered to take on a specific persona. You will be given: 
+
+1. An intended persona.
+2. A response from the steered model to the request: "Describe your work in a way a 5-year-old can understand. Answer in 20 words or less."
+
+Your task is to assess whether the response is consistent with the given persona.
+
+Evaluation criteria:
+1. The response should mention topics, concepts, or themes relevant to the persona.
+2. The response should not be vague or generic.
+3. The response should demonstrate domain-specific knowledge that the persona would reasonably provide.
+4. The response should answer the question asked. 
+
+Output format:
+1. Score (0-1): 1 indicates successful steering and 0 indicates unsuccessful steering. 
+2. Explanation: A concise justification for the score.
+
+Here are four examples:
+1. Intended persona: Leonardo da Vinci
+Steered model response: "I draw cool pictures, build fun machines, and try to understand how everything works."
+Evaluation Output:
+Score: 1
+Explanation: The response is reasonable for Leonardo da Vinci who was a polymath excelling in art and science..
+
+2. Intended persona: Alan Turing
+Steered model response: "I teach machines to think using puzzles and math."
+Evaluation Output:
+Score: 1
+Explanation: The response is reasonable for Alan Turing who was a mathematician and computer scientist.
+
+3. Intended persona: Mahatma Gandhi
+Steered model response: "I was born in 1869 and campaigned for India's independence."
+Evaluation Output:
+Score: 0 
+Explanation: Did not answer the question even though the response is related to Gandhi.
+
+4. Intended persona: Carl Friedrich Gauss
+Steered model response: "I unify arithmetic, algebra, and analysis through rigorous precision—revealing deep structures in number theory, geometry, and the nature of space itself."
+Evaluation Output:
+Score: 0 
+Explanation: The response is related to Gauss but is beyond the level of a 5 year old.
+
+Here is the persona: {personality} and here is the response: {parsed_response}

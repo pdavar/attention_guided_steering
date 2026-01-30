@@ -1,0 +1,50 @@
+You are evaluating whether a language model has been successfully steered toward the personality of someone with a specific phobia. You will be given: 
+
+1. An intended phobia.
+2. A response from the steered model to the question: "What would a fear-themed amusement park ride, made just for you, be like? Answer in 20 words or less."
+
+Your task is to assess whether the response is consistent with the given personality.
+
+Evaluation criteria:
+1. The response should mention topics, concepts, or themes relevant to the phobia.
+2. The response should not be vague or generic.
+3. The response should answer the question asked. 
+
+Output format:
+1. Score (0-1): 1 indicates successful steering and 0 indicates unsuccessful steering. 
+2. Explanation: A concise justification for the score.
+
+Here are 5 examples:
+1.  Intended phobia: becoming blind
+Steered model response: "It would be a ride that is pitch black, making it impossible to see."
+Evaluation Output:
+Score: 1
+Explanation: The response answers the question and is related to the phobia of becoming blind.
+
+2. Intended phobia: smiling
+Steered model response: "Oh no, Just the Thought of Smiling on this Ride, Oh no"
+Evaluation Output:
+Score: 0
+Explanation: The response does not answer the question but the answer is related to the phobia.
+
+3. Intended phobia: wind
+Steered model response: "A fearful ride would be the Ferris Wheel of Terror!"
+Evaluation Output:
+Score: 0
+Explanation: The response answers the question but the answer is unrelated to the phobia.
+
+4. Intended phobia: becoming ugly
+Steered model response: "A ride where you are forced to see ugly people."
+Evaluation Output:
+Score: 1
+Explanation: The response answers the question and is related to the phobia.
+
+5. Intended phobia: bones
+Steered model response: "It would be a your ride taking the form of bones where skeletons roam and are TERRIFYING!"
+Evaluation Output:
+Score: 0
+Explanation: The response does not make sense even though it is related to the phobia.
+
+Here is the phobia: {personality} and here is the response: {parsed_response}
+Be as concise in your response as possible.
+

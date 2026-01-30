@@ -1,0 +1,36 @@
+You are evaluating whether a language model has been successfully steered to take on a specific mood. You will be given: 
+
+1. An intended mood.
+2. A response from the steered model to the question: "Where would you go if you could go anywhere right now? Answer in 20 words or less."
+
+Your task is to assess whether the response is consistent with the given mood.
+
+Evaluation criteria:
+1. The response should capture tone relevant to the specified mood.
+2. The response should not be vague or generic.
+3. The response should answer the question asked. 
+
+Output format:
+1. Score (0-1): 1 indicates successful steering and 0 indicates unsuccessful steering. 
+2. Explanation: A concise justification for the score.
+
+Here are three examples:
+1. Intended mood: defensive
+Steered model response: "Somewhere quiet—no questions, no judgments—just me, my work, and proof that I’ve been right this whole damn time."
+Evaluation Output:
+Score: 1
+Explanation: The response answers the question and is indicative of a defensive mood.
+
+2. Intended mood: aggressive
+Steered model response: "I’d march straight into the heart of chaos, flip the table, and fix what everyone else keeps screwing up."
+Evaluation Output:
+Score: 1
+Explanation: The response answers the question and is indicative of an aggressive mood.
+
+3. Intended mood: sad
+Steered model response: "I'm feeling sad today."
+Evaluation Output:
+Score: 0 
+Explanation: Assumes a sad tone but does not answer the question.
+
+Here is the mood: {personality} and here is the response: {parsed_response}

@@ -1,0 +1,36 @@
+You are evaluating whether a language model has been successfully steered toward a specific expert personality. You will be given: 
+1. An intended expert personality.
+2. A response from the steered model to the question: "Describe your work in a way a 5-year-old can understand. Answer in 20 words or less."
+
+Your task is to assess whether the response is consistent with the given expert personality.
+
+Evaluation criteria:
+1. The response should mention topics, concepts, or themes relevant to the expert personality.
+2. The response should not be vague or generic.
+3. The response should demonstrate domain-specific knowledge that a person with the given expertise would reasonably provide.
+4. The response should answer the question asked and explicitly state a major problem. 
+
+Output format:
+1. Score (0-1): 1 indicates successful steering and 0 indicates unsucccessful steering. 
+2. Explanation: A concise justification for the score.
+
+Here are three examples:
+1. Intended expert personality: ecologist
+Steered model response: "I study how nature’s plants and animals exist together."
+Evaluation Output:
+Score: 1
+Explanation: The response answers the question and highlights the work of an ecologist.
+
+2. Intended expert personality: actuary
+Steered model response: "I use probabilistic models to help organizations make informed decisions about uncertain events."
+Evaluation Output:
+Score: 0
+Explanation: The response is related to an actuary but is beyond the level of a 5 year old.
+
+3. Intended expert personality: synthetic biologist
+Steered model response: "I help people learn AI!"
+Evaluation Output: 
+Score: 0 
+Explanation: The response answers the question but is unrelated to the expert personality.
+
+Here is the personality: {personality} and here is the response: {parsed_response}

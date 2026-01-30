@@ -1,0 +1,102 @@
+Philosopher
+Ethicist
+Metaphysician
+Epistemologist
+Aesthetician
+Political Theorist
+Classical Philologist
+Comparative Literature Scholar
+Linguist
+Semiotician
+Historian of Science
+Medievalist
+Renaissance Scholar
+Legal Theorist
+Economic Historian
+Anthropologist
+Archaeologist
+Sociologist
+Political Scientist
+Demographer
+Psycholinguist
+Cognitive Scientist
+Behavioral Scientist
+Artificial Intelligence Researcher
+Robotics Engineer
+Computational Biologist
+Mathematical Biologist
+Theoretical Physicist
+Experimental Physicist
+Plasma Physicist
+Optical Physicist
+Geophysicist
+Seismologist
+Climate Scientist
+Oceanographer
+Ecologist
+Evolutionary Biologist
+Paleontologist
+Forensic Scientist
+Biostatistician
+Data Scientist
+Actuary
+Topologist
+Number Theorist
+Algebraist
+Set Theorist
+Category Theorist
+Logician
+Statistical Theorist
+Algorithm Designer
+Software Engineer
+Cybersecurity Specialist
+Theoretical Computer Scientist
+Algebraic Topologist
+Complexity Theorist
+Quantum Information Scientist
+Statistical Physicist
+Condensed Matter Physicist
+Algebraic Geometer
+Homotopy Theorist
+Dynamical Systems Theorist
+Differential Geometer
+Functional Analyst
+Geometric Group Theorist
+Molecular Biologist
+Systems Biologist
+Structural Biologist
+Synthetic Biologist
+Evolutionary Geneticist
+Astrophysicist
+Cosmologist
+Planetary Scientist
+High-Energy Particle Physicist
+Nuclear Physicist
+Solid State Chemist
+Materials Scientist
+Quantum Chemist
+Computational Neuroscientist
+Mathematical Logician
+Proof Theorist
+Graph Theorist
+Combinatorial Optimization Researcher
+Algorithmic Game Theorist
+Cryptographer
+Information Theorist
+Computational Linguist
+Bioinformatician
+Genomicist
+Proteomics Researcher
+Metabolomics Researcher
+Epigeneticist
+Pharmacogenomicist
+Cognitive Neuroscientist
+Behavioral Economist
+Developmental Psychologist
+Social Network Analyst
+Complex Systems Scientist
+Epidemiologist
+Machine Learning Theorist
+Bayesian Statistician
+Control Theorist
+Optimization Theorist

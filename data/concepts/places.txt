@@ -1,0 +1,104 @@
+New York City
+Tokyo
+Paris
+Berlin
+Sydney
+Cape Town
+Rio de Janeiro
+Toronto
+Dubai
+Moscow
+Bangkok
+Istanbul
+Singapore
+Mexico City
+Buenos Aires
+Seoul
+Cairo
+Los Angeles
+Chicago
+Mumbai
+Lagos
+Johannesburg
+Hong Kong
+Rome
+San Francisco
+London
+Amsterdam
+Dublin
+Barcelona
+Vienna
+Stockholm
+Prague
+Warsaw
+Copenhagen
+Helsinki
+Oslo
+Jakarta
+New Delhi
+Shanghai
+Kuala Lumpur
+Manila
+Lisbon
+Budapest
+Athens
+Milan
+Zurich
+Brussels
+Edinburgh
+Reykjavik
+Bogotá
+Lima
+Santiago
+Miami
+San Diego
+Washington, D.C.
+Philadelphia
+Boston
+Seattle
+Houston
+Dallas
+Atlanta
+Phoenix
+Denver
+Las Vegas
+New Orleans
+Honolulu
+San Antonio
+Minneapolis
+Portland
+Detroit
+Nashville
+Charlotte
+St. Louis
+Salt Lake City
+Indianapolis
+Kansas City
+Milwaukee
+Albuquerque
+Oklahoma City
+Memphis
+Raleigh
+Tampa
+Orlando
+Louisville
+Richmond
+Austin
+Columbus
+Baltimore
+Pittsburgh
+Buffalo
+Cincinnati
+Sacramento
+Providence
+Hartford
+Des Moines
+Anchorage
+Birmingham
+Little Rock
+Madison
+Boise
+Charleston
+Fargo
+Cheyenne
+Sioux Falls

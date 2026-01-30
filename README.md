@@ -11,16 +11,16 @@ python -m pip install --upgrade pip setuptools wheel
 
 pip install -r requirements.txt
 ```
-- Set your OpenAI key for evaluations: `export OPENAI_API_KEY="<your-key-here>"`.
+- Set your OpenAI key for evaluations (needed for script `3_evaluate_steered_outputs.py`): `export OPENAI_API_KEY="<your-key-here>"`.
 - Set Hugging Face auth if the chosen model requires it (`huggingface-cli login`).
-- Required data already lives under `data/`, outputs are written beside it (e.g., `data/attention_to_prompt`, `data/cached_outputs`, `data/csvs`).
-- To steer towrads a custom concept that is not already listed under `data/concepts`, use the flag `-c custom` and insert your entire prefix in the `data/concepts/custom.txt` file.
+- Required data already lives under `data/`. Attention-to-prefixes, directions (steering vectors), and steered outputs are written beside it (e.g., `data/attention_to_prompt`, `data/directions`, `data/cached_outputs`).
+- To steer towrads a custom concept that is not already listed under the 5 concept classes in `data/concepts`, use the flag `-c custom` and insert your entire prefix in the `data/concepts/custom.txt` file.
 
 ### 2) Shared CLI flags
 `args.py` defines common flags (defaults in parentheses):
 - `--rep_token/-t` (`max_attn_per_layer`): token position or strategy for representation.
 - `--model_name/-m` (`llama_3.1_8b`): see `utils.select_llm` for allowed IDs.
-- `--concept_type/-c` (`fears`): one of `fears|personalities|moods|places|personas|jailbreaking`.
+- `--concept_type/-c` (`fears`): one of `fears|personalities|moods|places|personas|jailbreaking|custom`.
 - `--control_method/-cm` (`rfm`): steering method.
 - `--version/-v` (`1`): test prompt version.
 - `--label/-l` (`soft`): `soft` or `hard` labels.

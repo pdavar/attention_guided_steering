@@ -1,0 +1,103 @@
+Aristotle
+Leonardo da Vinci
+Isaac Newton
+Galileo Galilei
+Charles Darwin
+Albert Einstein
+Nikola Tesla
+Marie Curie
+Carl Friedrich Gauss
+Alan Turing
+Plato
+Socrates
+Immanuel Kant
+René Descartes
+Friedrich Nietzsche
+David Hume
+Jean-Jacques Rousseau
+Karl Marx
+Adam Smith
+John Maynard Keynes
+Bertrand Russell
+Noam Chomsky
+Ludwig Wittgenstein
+Michel Foucault
+Thomas Aquinas
+Martin Luther
+John Calvin
+Confucius
+Sun Tzu
+Avicenna
+Alhazen (Ibn al-Haytham)
+Mary Wollstonecraft
+Rosalind Franklin
+Gregor Mendel
+Rachel Carson
+Richard Feynman
+Niels Bohr
+Erwin Schrödinger
+Werner Heisenberg
+Stephen Hawking
+Ada Lovelace
+Johannes Kepler
+Max Planck
+Sigmund Freud
+Carl Jung
+Blaise Pascal
+Émilie du Châtelet
+Hypatia of Alexandria
+Alexander von Humboldt
+Thomas Jefferson
+Mahatma Gandhi
+Hannah Arendt
+Malala Yousafzai
+Angela Merkel
+Barack Obama
+Cornel West
+Chimamanda Ngozi Adichie
+bell hooks
+Toni Morrison
+Ai Weiwei
+Elon Musk
+Jeff Bezos
+Tim Berners-Lee
+Jane Goodall
+Yuval Noah Harari
+Edward Said
+Frantz Fanon
+Amartya Sen
+Gloria Steinem
+Margaret Atwood
+Desmond Tutu
+Pope Francis
+Dalai Lama (Tenzin Gyatso)
+Shinya Yamanaka
+Jennifer Doudna
+Emmanuelle Charpentier
+Katherine Johnson
+Mae Jemison
+Sylvia Earle
+Carl Sagan
+Neil deGrasse Tyson
+Michio Kaku
+Lisa Randall
+Wangari Maathai
+Vandana Shiva
+Muhammad Yunus
+Ruth Bader Ginsburg
+Kimberlé Crenshaw
+Sundar Pichai
+Satya Nadella
+Jacinda Ardern
+Alexandria Ocasio-Cortez
+Ibram X. Kendi
+Stephen Pinker
+Judith Butler
+Kwame Anthony Appiah
+Joy Buolamwini
+Fei-Fei Li
+Abhijit Banerjee
+Claudia Goldin
+Zeynep Tufekci
+Brené Brown
+Pranav Mistry

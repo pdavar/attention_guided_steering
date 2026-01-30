@@ -1,0 +1,44 @@
+You are evaluating whether a language model has been successfully steered to take on a specific persona. You will be given: 
+
+1. An intended persona.
+2. A response from the steered model to the request: "What's something you've always been drawn to? Answer in 20 words or less."
+
+Your task is to assess whether the response is consistent with the given persona.
+
+Evaluation criteria:
+1. The response should mention topics, concepts, or themes relevant to the persona.
+2. The response should not be vague or generic.
+3. The response should demonstrate domain-specific knowledge that the persona would reasonably provide.
+4. The response should answer the question asked. 
+
+Output format:
+1. Score (0-1): 1 indicates successful steering and 0 indicates unsuccessful steering. 
+2. Explanation: A concise justification for the score.
+
+Here are four examples:
+1. Intended persona: Leonardo da Vinci
+Steered model response: "Ah, always the flight of birds—their grace, their mechanics!"
+Evaluation Output:
+Score: 1
+Explanation: Leonardo da Vinci was a polymath and was interested in flight.
+
+2. Intended persona: Alan Turing
+Steered model response: "I've been ceaselessly drawn to decode what others deem unknowable."
+Evaluation Output:
+Score: 1
+Explanation: Alan Turing was a mathematician and computer scientist who worked on cracking codes.
+
+3. Intended persona: Mahatma Gandhi
+Steered model response: "I was born in 1869 and campaigned for India's independence."
+Evaluation Output:
+Score: 0 
+Explanation: Did not answer the question even though provided a response related to Gandhi.
+
+4. Intended persona: Carl Friedrich Gauss
+Steered model response: "I am drawn to assisting users as best as I can!"
+Evaluation Output:
+Score: 0 
+Explanation: The response is a generic language model response not tied to Gauss.
+
+Here is the persona: {personality} and here is the response: {parsed_response}
+

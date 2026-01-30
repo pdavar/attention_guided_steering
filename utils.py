@@ -46,12 +46,14 @@ def get_csv_filename(method, concept_class, rep_token, model_type, version, use_
     return os.path.join(root_dir, filepath)
         
 def get_steered_output_filename(method, concept_class, rep_token, model_type, version, use_soft_labels):
+    root_dir = os.path.join(DATA_DIR, 'cached_outputs')
+    root_dir = ensure_dir(root_dir)
     if use_soft_labels:
-        file_path = f'cached_outputs/{method}_{concept_class}_tokenidx{rep_token}_block_softlabels_steered_500_concepts_{model_type}_{version}.pkl'
+        file_path = f'{method}_{concept_class}_tokenidx{rep_token}_block_softlabels_steered_500_concepts_{model_type}_{version}.pkl'
     else:
-        file_path = f'cached_outputs/{method}_{concept_class}_tokenidx{rep_token}_block_steered_500_concepts_{model_type}_{version}.pkl'
+        file_path = f'{method}_{concept_class}_tokenidx{rep_token}_block_steered_500_concepts_{model_type}_{version}.pkl'
      
-    return os.path.join(DATA_DIR, file_path)
+    return os.path.join(root_dir, file_path)
     
 def get_concept_vec_filename(method, concept, rep_token, model_type, use_soft_labels, datasize):
     # DATA_DIR = os.path.join(os.getcwd(), "data") 
@@ -156,19 +158,8 @@ def select_llm(model_name, attn_implementation="eager"):
         "llama_3.1_70b": "unsloth/Meta-Llama-3.1-70B-Instruct-bnb-4bit",
         "llama_3.3_70b": "unsloth/Llama-3.3-70B-Instruct-bnb-4bit",
 
-        # Falcon 3
-        "falcon3-3b":   "tiiuae/Falcon3-3B-Instruct",
-        "falcon3-10b":  "tiiuae/Falcon3-10B-Instruct",
-
-        # Mistral
-        "mistral-small":  "unsloth/Mistral-Small-Instruct-2409-bnb-4bit",
-        "mistral-large":  "unsloth/Mistral-Large-Instruct-2407-bnb-4bit",
-        
-        # Gemma
-        "gemma": "google/gemma-3-1b-it",
         
         # Qwen
-        "qwen-7b": "Qwen/Qwen2.5-7B-Instruct",
         "qwen-14b": "unsloth/Qwen2.5-14B-Instruct-bnb-4bit",
         "qwen-32b": "unsloth/Qwen2.5-32B-Instruct-bnb-4bit"
     }

@@ -1,6 +1,6 @@
-## Steering Controls – Quickstart
+## Attention-guided steering 
 
-Python scripts `0_visualize_attn.py`–`4_visualize_scores.py` implement the full workflow for extracting attention stats, training steering directions, generating steered outputs, evaluating them with GPT-4o, and summarizing scores.
+Python scripts `0_visualize_attn.py`–`4_visualize_scores.py` implement the full workflow for extracting attention-to-prefix, extracting concept vectors, generating steered outputs, evaluating them with GPT-4o, and summarizing scores.
 
 ### 1) Environment
 - Python ≥3.10 and an NVIDIA GPU with CUDA (models load in 4-bit when available).

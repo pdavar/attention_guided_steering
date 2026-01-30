@@ -27,37 +27,35 @@ pip install -r requirements.txt
 - `--label/-l` (`soft`): `soft` or `hard` labels.
 
 ### 3) Pipeline steps
-- **0_visualize_attn.py** – cache mean-head attention over the final common tokens for each concept.
-  - Usage:
+- **0_visualize_attn.py** – Generates a numpy array containing the attention-to-prefix for all final tokens shared by all prompts.
+
 ```
 python 0_visualize_attn.py -t max_attn_per_layer -m llama_3.1_8b -c fears -cm rfm -v 1 -l soft
 ```
   - Output: `data/attention_to_prompt/attentions_meanhead_<model>_<concept>_paired_statements.npy`.
 
-- **1_get_directions.py** – train and save steering directions per concept.
-  - Usage:
+- **1_get_directions.py** – train and save concept vectors (directions) per concept.
+
 ```
 python 1_get_directions.py -t max_attn_per_layer -m llama_3.1_8b -c fears -cm rfm -v 1 -l soft
 ```
   - Output: direction vectors saved under `/data/directions/`.
 
 - **2_steer.py** – generate original + steered completions for each concept and coefficient.
-  - Usage:
+
 ```
 python 2_steer.py -t max_attn_per_layer -m llama_3.1_8b -c fears -cm rfm -v 1 -l soft
 ```
   - Output: pickled generations at `data/cached_outputs/<method>_<concept>_tokenidx<rep>_block[_softlabels]_steered_500_concepts_<model>_<version>.pkl`.
 
-- **3_evaluate_steered_outputs.py** – score steered outputs with GPT-4o and pick best coef per concept.
+- **3_evaluate_steered_outputs.py** – evaluated steered outputs with GPT-4o and pick best coef per concept.
   - Requires `OPENAI_API_KEY` in the environment.
-  - Usage:
 ```
 OPENAI_API_KEY=... python 3_evaluate_steered_outputs.py -t max_attn_per_layer -m llama_3.1_8b -c fears -cm rfm -v 1 -l soft
 ```
   - Output: CSV written to `data/csvs/<method>_<concept>_tokenidx<rep>_block[_softlabels]_gpt4o_outputs_500_concepts_<model>_<version>.csv`.
 
 - **4_visualize_scores.py** – aggregate per-method/per-rep-token scores into a summary table.
-  - Usage (runs over all methods/concept classes defined in the script):
 ```
 python 4_visualize_scores.py
 ```
@@ -68,7 +66,7 @@ python 4_visualize_scores.py
 # 0) compute attention stats (needed when using max_attn_per_layer)
 python 0_visualize_attn.py -m llama_3.1_8b -c fears
 
-# 1) fit steering directions
+# 1) learn concept vectors
 python 1_get_directions.py -m llama_3.1_8b -c fears
 
 # 2) generate steered outputs

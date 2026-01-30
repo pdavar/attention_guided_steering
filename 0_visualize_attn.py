@@ -10,6 +10,7 @@ from args import get_args
 from datasets import *
 
 
+run_first_five = True
 ROOT_DIR = "data/attention_to_prompt"
 
 dataset_to_lower = {'fears':True, 
@@ -65,8 +66,6 @@ def save_attn_paired(llm, concept = 'aggressive', concept_class = 'moods', head_
 
 
 
-
-
 if __name__=="__main__":
     rep_token, model_type, dataset_label, method, _, label = get_args()
     print(f"rep_token = {rep_token}")
@@ -80,11 +79,14 @@ if __name__=="__main__":
     concept_class = dataset_label
     fname = f"data/concepts/{concept_class}.txt"
     concept_list = read_file(fname, lower=dataset_to_lower[concept_class])
-    for concept in concept_list:
+    for i, concept in enumerate(concept_list):
         print(f"=== Concept = {concept} ===")
 
         save_attn_paired(llm, concept , concept_class = concept_class, head_agg = 'mean')
-        
+        if run_first_five and i>=5: 
+            print("Finished running for 5 samples.")
+            break
+    print("Done!")
     
     
     

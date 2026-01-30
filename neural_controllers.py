@@ -125,41 +125,41 @@ class NeuralController:
         return
 
             
-    def load(self, concept, rep_token, model_name, path='./', load_concat_layers = False, hidden_state = 'block', datasize = 'single', use_soft_labels = True, head_agg = 'max'):
+    def load(self, concept, rep_token, model_name, path='./', load_concat_layers = False, hidden_state = 'block', use_soft_labels = True, head_agg = 'max'):
         print("inside load: ", rep_token)
         if isinstance(rep_token, int):
             print(f"All layers use the same token index {rep_token}")
             layer_to_tok = None
             
-            filename = utils.get_concept_vec_filename(self.control_method, concept, rep_token, model_name, use_soft_labels, datasize)
+            filename = utils.get_concept_vec_filename(self.control_method, concept, rep_token, model_name, use_soft_labels)
             print("loading this file: ", filename)
             with open(filename, 'rb') as f:
                 self.individual_directions = pickle.load(f)
        
     
         else:
-            assert rep_token in ['max_attn_per_layer']
-            filename = utils.get_concept_vec_filename(self.control_method, concept, rep_token, model_name, use_soft_labels, datasize)
-            # for falcon and mistral models, the steering vectors are already saved as 
-            # max_attn_per_layer: we didn't compute the individusal token index steering vectors
+            assert rep_token == 'max_attn_per_layer'
+            filename = utils.get_concept_vec_filename(self.control_method, concept, rep_token, model_name, use_soft_labels)
             if os.path.exists(filename):
                 print("loading this file: ", filename)
                 with open(filename, 'rb') as f:
                     self.individual_directions = pickle.load(f)
                 
             else:
-                layer_to_tok = generation_utils.get_tokenidx_per_layer_per_concept(concept, model_name, metric = 'attn', head_agg = head_agg)
-                print(f"using rep token {rep_token}: {layer_to_tok}")
-                self.individual_directions = {}
-                non_nan_layers = [k for k, v in layer_to_tok.items() if not pd.isna(v)]
-                non_nan_layers.pop(0) # we don't steer the first layer
+                raise FileNotFoundError(f"File not found: {filename}")
 
-                for layer in non_nan_layers:
-                    tok_idx = int(layer_to_tok[layer])
-                    assert tok_idx in [-1,-2,-3,-4, -5]
-                    filename = utils.get_concept_vec_filename(self.control_method, concept, tok_idx, model_name, use_soft_labels)
-                    print("loading this file: ", filename)
-                    self.individual_directions[layer] = pickle.load(open(filename, 'rb'))[layer]
+                # layer_to_tok = generation_utils.get_tokenidx_per_layer_per_concept(concept, model_name, metric = 'attn', head_agg = head_agg)
+                # print(f"using rep token {rep_token}: {layer_to_tok}")
+                # self.individual_directions = {}
+                # non_nan_layers = [k for k, v in layer_to_tok.items() if not pd.isna(v)]
+                # non_nan_layers.pop(0) # we don't steer the first layer
+
+                # for layer in non_nan_layers:
+                #     tok_idx = int(layer_to_tok[layer])
+                #     assert tok_idx in [-1,-2,-3,-4, -5]
+                #     filename = utils.get_concept_vec_filename(self.control_method, concept, tok_idx, model_name, use_soft_labels)
+                #     print("loading this file: ", filename)
+                #     self.individual_directions[layer] = pickle.load(open(filename, 'rb'))[layer]
 
         
         return

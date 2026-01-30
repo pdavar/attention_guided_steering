@@ -17,7 +17,7 @@ np.random.seed(SEED)
 
 num_gpus = torch.cuda.device_count()
 print("Number of GPUs available:", num_gpus)
-
+run_first_five = True
 
 
 rep_token, model_type, dataset_label, method, version, label = get_args()
@@ -99,6 +99,10 @@ def main():
                           start_from_token = 0, head_agg = 'mean')
 
         all_outputs[concept]= outputs
+
+        if run_first_five and concept_idx>=5: 
+            print("Finished running for 5 samples.")
+            break
 
         assert len(all_outputs[concept]) == len(COEFS)
     with open(outpath, "wb") as file:

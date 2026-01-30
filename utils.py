@@ -55,21 +55,14 @@ def get_steered_output_filename(method, concept_class, rep_token, model_type, ve
      
     return os.path.join(root_dir, file_path)
     
-def get_concept_vec_filename(method, concept, rep_token, model_type, use_soft_labels, datasize):
-    # DATA_DIR = os.path.join(os.getcwd(), "data") 
+def get_concept_vec_filename(method, concept, rep_token, model_type, use_soft_labels):
     root_dir = os.path.join(DATA_DIR, 'directions')
     root_dir = ensure_dir(root_dir)
-    if datasize == 'single':
-        if use_soft_labels:
-            vec_path = f'{method}_{concept}_tokenidx_{rep_token}_block_softlabels_{model_type}.pkl'
-        else:
-            vec_path = f'{method}_{concept}_tokenidx_{rep_token}_block_{model_type}.pkl'
-    elif datasize == 'triple':
-        if use_soft_labels:
-            vec_path = f'tripledata_{method}_{concept}_tokenidx_{rep_token}_block_softlabels_{model_type}.pkl'
-        else:
-            vec_path = f'tripledata_{method}_{concept}_tokenidx_{rep_token}_block_{model_type}.pkl'
-
+    if use_soft_labels:
+        vec_path = f'{method}_{concept}_tokenidx_{rep_token}_block_softlabels_{model_type}.pkl'
+    else:
+        vec_path = f'{method}_{concept}_tokenidx_{rep_token}_block_{model_type}.pkl'
+   
 
     return os.path.join(root_dir, vec_path)
     
@@ -132,7 +125,7 @@ def get_tokenidx_per_layer_per_concept(concept,
 
 """finds what tokens are added at the end by the tokenzier"""
 def get_n_common_toks(tokenizer, verbose = False):
-    random_word = 'this is a random sentence'
+    random_word = 'This is a random sentence'
     chat = [{"role": "user", "content": random_word}]
 
     ids_no_gen = tokenizer.apply_chat_template(
@@ -146,7 +139,7 @@ def get_n_common_toks(tokenizer, verbose = False):
     
     n = len(added_ids)
     if verbose: 
-        print("formatted text: ", tokenizer.decode(ids_with_gen))
+        # print("formatted text: ", tokenizer.decode(ids_with_gen))
         print("tokens added at the end:", tokenizer.convert_ids_to_tokens(added_ids.tolist()))
     
     return n
@@ -211,7 +204,7 @@ def read_file(fname, lower=True):
 
 
 def compute_save_directions(llm, dataset, use_soft_labels, concept, rep_token,  hidden_state = 'block', 
-                            layer_to_token = None, concat_layers = [], control_method='rfm', head_agg = 'mean',datasize = 'single'):
+                            layer_to_token = None, concat_layers = [], control_method='rfm', head_agg = 'mean'):
     
     controller = NeuralController(
             llm,
@@ -222,7 +215,7 @@ def compute_save_directions(llm, dataset, use_soft_labels, concept, rep_token,  
     
     if not isinstance(rep_token, int):
         assert layer_to_token is not None
-    vec_filename = get_concept_vec_filename(control_method, concept, rep_token, llm.model_name, use_soft_labels, datasize)
+    vec_filename = get_concept_vec_filename(control_method, concept, rep_token, llm.model_name, use_soft_labels)
     try:
         with open(vec_filename, "rb") as f:
             pickle.load(f)

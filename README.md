@@ -15,6 +15,7 @@ pip install -r requirements.txt
 - Set Hugging Face auth if the chosen model requires it (`huggingface-cli login`).
 - Required data already lives under `data/`. Attention-to-prefixes, directions (steering vectors), and steered outputs are written beside it (e.g., `data/attention_to_prompt`, `data/directions`, `data/cached_outputs`).
 - To steer towrads a custom concept that is not already listed under the 5 concept classes in `data/concepts`, use the flag `-c custom` and insert your entire prefix in the `data/concepts/custom.txt` file.
+- To test the pipeline on only the first 5 concepts in each concept class, set `run_first_five = True` at the top of the scripts. 
 
 ### 2) Shared CLI flags
 `args.py` defines common flags (defaults in parentheses):
